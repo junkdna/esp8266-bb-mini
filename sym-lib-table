@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name esp8266-bb-rescue)(type Legacy)(uri /home/merlin/development/hardware/esp8266-bbold/esp8266-bb/esp8266-bb-rescue.lib)(options "")(descr ""))
+)
