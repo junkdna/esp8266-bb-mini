@@ -11,6 +11,8 @@
 
   (page A4)
   (title_block
+    (title "ESP8266 Minimal Breakout")
+    (date 2020-11-30)
     (rev 1)
   )
 

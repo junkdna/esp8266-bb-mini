@@ -4,8 +4,8 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
+Title "ESP8266 Minimal Breakout"
+Date "2020-11-30"
 Rev "1"
 Comp ""
 Comment1 "Designed for AISLER 2-Layer Service"
