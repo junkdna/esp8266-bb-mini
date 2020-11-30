@@ -1,0 +1,40 @@
+name: esp8266-bb-mini
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  erc_schematic_bom:
+    runs-on: ubuntu-20.04
+    container: domi3006/docker-kicad-ci:latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+    - name: run erc_and_fab
+      run: |
+        make -C esp8266-bb-mini/ erc_and_fab
+    - name: Retrieve results
+      uses: actions/upload-artifact@v1
+      with:
+        name: erc_schematic_bom
+        path: esp8266-bb-min/Fabrication
+
+  drc:
+    runs-on: ubuntu-20.04
+    container: domi3006/docker-kicad-ci:latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+    - name: run drc
+      run: |
+        make -C esp8266-bb-mini/ drc
+    - name: Retrieve results
+      uses: actions/upload-artifact@v1
+      with:
+        name: drc
+        path: esp8266-bb-min/Fabrication
