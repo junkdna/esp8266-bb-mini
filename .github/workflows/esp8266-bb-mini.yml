@@ -4,10 +4,9 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
 
 jobs:
-  erc_schematic_bom:
+  tests:
     runs-on: ubuntu-20.04
     container: domi3006/docker-kicad-ci:latest
     steps:
@@ -16,14 +15,9 @@ jobs:
         submodules: 'true'
     - name: run erc_and_fab
       run: |
-        make -C esp8266-bb-mini/ erc_and_fab
-    - name: Retrieve results
-      uses: actions/upload-artifact@v1
-      with:
-        name: erc_schematic_bom
-        path: esp8266-bb-min/Fabrication
+        kiplot -d Output preflight 
 
-  drc:
+  generate_artifacts:
     runs-on: ubuntu-20.04
     container: domi3006/docker-kicad-ci:latest
     steps:
@@ -32,9 +26,9 @@ jobs:
         submodules: 'true'
     - name: run drc
       run: |
-        make -C esp8266-bb-mini/ drc
+        kiplot -d Output -s run_erc,run_drc pdf_pcb_print pcbdraw_bot pcbdraw_top step dxf
     - name: Retrieve results
       uses: actions/upload-artifact@v1
       with:
-        name: drc
-        path: esp8266-bb-min/Fabrication
+        name: Artifacts
+        path: Output
