@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ ! -z "$GITHUB_OAUTH_TOKEN" && ! -z "$GITHUB_USER" ]]; then
+    EXTRA_PARM="-u $GUTHUB_USER:$GITHUB_OAUTH_TOKEN"
+fi
+
+urls=(
+    https://api.github.com/repos/INTI-CMNB/KiAuto/releases/latest
+    https://api.github.com/repos/INTI-CMNB/KiBoM/releases/latest
+    https://api.github.com/repos/INTI-CMNB/InteractiveHtmlBom/releases/latest
+    https://api.github.com/repos/INTI-CMNB/PcbDraw/releases/latest
+    https://api.github.com/repos/INTI-CMNB/KiBot/releases/latest
+)
+
+tmp=$(mktemp -d)
+OPWD=$(pwd)
+cd $tmp
+for url in ${urls[*]}; do
+    xargs -n1 curl -LJO  <<< "$(curl $EXTRA_PARM -s "$url" | jq -j '.assets | map(.browser_download_url) | join(" ")')"
+done
+
+sudo apt-get -yqq install --no-install-recommends $tmp/*.deb librsvg2-bin
+cd $OPWD
+rm -rf $tmp
