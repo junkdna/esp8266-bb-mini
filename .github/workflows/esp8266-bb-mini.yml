@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'true'
-    - name: run erc_and_fab
+    - name: Run preflight checks (ERC, DRC)
       run: |
         kiplot -d Output preflight 
 
@@ -24,7 +24,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: 'true'
-    - name: run drc
+    - name: Produce outputs (pdf layout and schematic, pngs and models of the board)
       run: |
         kiplot -d Output -s run_erc,run_drc pdf_pcb_print pcbdraw_bot pcbdraw_top step dxf
     - name: Retrieve results
