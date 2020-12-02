@@ -82,6 +82,21 @@ X ~ 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Mechanical_MountingHole
+#
+DEF Mechanical_MountingHole H 0 40 Y Y 1 F N
+F0 "H" 0 200 50 H V C CNN
+F1 "Mechanical_MountingHole" 0 125 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ MountingHole*
+$ENDFPLIST
+DRAW
+C 0 0 50 0 1 50 N
+ENDDRAW
+ENDDEF
+#
 # RF_Module_ESP-12F
 #
 DEF RF_Module_ESP-12F U 0 20 Y Y 1 F N
@@ -120,13 +135,14 @@ X CS0 9 -600 0 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
-# esp8266-bb-rescue_LP38693MP-3.3-Regulator_Linear
+# Regulator_Linear_LP38693MP-3.3
 #
-DEF esp8266-bb-rescue_LP38693MP-3.3-Regulator_Linear U 0 10 Y Y 1 F N
+DEF Regulator_Linear_LP38693MP-3.3 U 0 10 Y Y 1 F N
 F0 "U" -250 225 50 H V C CNN
-F1 "esp8266-bb-rescue_LP38693MP-3.3-Regulator_Linear" 0 225 50 H V L CNN
+F1 "Regulator_Linear_LP38693MP-3.3" 0 225 50 H V L CNN
 F2 "Package_TO_SOT_SMD:SOT-223-5" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
+ALIAS LP38693MP-2.5 LP38693MP-3.3 LP38693MP-5.0
 $FPLIST
  SOT*223*
 $ENDFPLIST
