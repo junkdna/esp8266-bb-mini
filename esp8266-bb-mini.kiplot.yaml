@@ -1,0 +1,340 @@
+kibot:
+  version: 1
+
+preflight:
+  # [boolean=false] Zones are filled before doing any operation involving PCB layers
+  check_zone_fills: false
+  # [list(dict)] A list of entries to filter out ERC/DRC messages
+  filters: 
+    - filter: 'Filter description'
+      error: '10'
+      regex: 'Regular expression to match'
+  # [boolean=false] Option for `run_drc`. Ignores the unconnected nets. Useful if you didn't finish the routing
+  ignore_unconnected: false
+  # [boolean=false] Runs the DRC (Distance Rules Check). To ensure we have a valid PCB
+  run_drc: true
+  # [boolean=false] Runs the ERC (Electrical Rules Check). To ensure the schematic is electrically correct
+  run_erc: true
+  # [boolean=false] Update the XML version of the BoM (Bill of Materials).
+  update_xml: true
+
+outputs:
+  # DXF (Drawing Exchange Format):
+  # This output is what you get from the File/Plot menu in pcbnew.
+  - name: 'dxf'
+    comment: 'Exports the PCB to 2D mechanical EDA tools (like AutoCAD).'
+    type: 'dxf'
+    dir: 'dxf_dir'
+    options:
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [string='full'] what to use to indicate the drill places, can be none, small or full (for real scale)
+      drill_marks: 'full'
+      # [boolean=true] do not include the PCB edge layer
+      exclude_edge_layer: true
+      # [boolean=false] do not plot the component pads in the silk screen (KiCad 5.x only)
+      exclude_pads_from_silkscreen: false
+      # [boolean=false] include references and values even when they are marked as invisible
+      force_plot_invisible_refs_vals: false
+      # [boolean=false] use mm instead of inches
+      metric_units: false
+      # [string='%f-%i%v.%x'] output file name, the default KiCad name if empty. Affected by global options
+      output: '%f-%i%v.%x'
+      # [boolean=true] include the footprint references
+      plot_footprint_refs: true
+      # [boolean=true] include the footprint values
+      plot_footprint_values: true
+      # [boolean=false] currently without effect
+      plot_sheet_reference: false
+      # [boolean=true] plot using the contour, instead of the center line
+      polygon_mode: true
+      # [boolean=false] don't fill objects, just draw the outline
+      sketch_plot: false
+      # [boolean=true] cover the vias
+      tent_vias: true
+      # [boolean=false] use the auxiliar axis as origin for coordinates
+      use_aux_axis_as_origin: false
+      # [string=''] Board variant to apply
+      variant: ''
+    layers: all
+
+
+  # IBoM (Interactive HTML BoM):
+  # For more information: https://github.com/INTI-CMNB/InteractiveHtmlBom
+  # This output is what you get from the InteractiveHtmlBom plug-in (pcbnew).
+  - name: 'ibom'
+    comment: 'Generates an interactive web page useful to identify the position of the components in the PCB.'
+    type: 'ibom'
+    dir: 'ibom_dir'
+    options:
+      # [string=''] List of comma separated blacklisted components or prefixes with *. E.g. 'X1,MH*'.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      blacklist: ''
+      # [boolean=false] Blacklist components with empty value.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      blacklist_empty_val: false
+      # [number=0] Board rotation in degrees (-180 to 180). Will be rounded to multiple of 5
+      board_rotation: 0
+      # [string='left-right'] [bom-only,left-right,top-bottom] Default BOM view
+      bom_view: 'left-right'
+      # [string='Sourced,Placed'] Comma separated list of checkbox columns
+      checkboxes: 'Sourced,Placed'
+      # [boolean=false] Default to dark mode
+      dark_mode: false
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill.
+      # Avoid using it in conjunction with with IBoM native filtering options
+      dnf_filter: ''
+      # [string=''] Name of the extra field that indicates do not populate status.
+      # Components with this field not empty will be blacklisted.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      dnp_field: ''
+      # [string=''] Comma separated list of extra fields to pull from netlist or xml file
+      extra_fields: ''
+      # [boolean=false] Hide footprint pads by default
+      hide_pads: false
+      # [boolean=false] Hide silkscreen by default
+      hide_silkscreen: false
+      # [boolean=false] Highlight pin1 by default
+      highlight_pin1: false
+      # [boolean=false] Include netlist information in output.
+      include_nets: false
+      # [boolean=false] Include track/zone information in output. F.Cu and B.Cu layers only
+      include_tracks: false
+      # [string='FB'] [F,FB,B] Default layer view
+      layer_view: 'FB'
+      # [string='ibom'] Output file name format supports substitutions:
+      # %f : original pcb file name without extension.
+      # %p : pcb/project title from pcb metadata.
+      # %c : company from pcb metadata.
+      # %r : revision from pcb metadata.
+      # %d : pcb date from metadata if available, file modification date otherwise.
+      # %D : bom generation date.
+      # %T : bom generation time.
+      # Extension .html will be added automatically.
+      # Note that this name is used only when output is ''
+      name_format: 'ibom'
+      # [string=''] Path to netlist or xml file
+      netlist_file: ''
+      # [boolean=false] Do not blacklist virtual components.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      no_blacklist_virtual: false
+      # [boolean=false] Do not redraw pcb on drag by default
+      no_redraw_on_drag: false
+      # [boolean=false] Normalize extra field name case. E.g. 'MPN' and 'mpn' will be considered the same field
+      normalize_field_case: false
+      # [string='%f-%i%v.%x'] Filename for the output, use '' to use the IBoM filename (%i=ibom, %x=html). Affected by global options
+      output: '%f-%i%v.%x'
+      # [boolean=false] Show fabrication layer by default
+      show_fabrication: false
+      # [string='C,R,L,D,U,Y,X,F,SW,A,~,HS,CNN,J,P,NT,MH'] Default sort order for components. Must contain '~' once
+      sort_order: 'C,R,L,D,U,Y,X,F,SW,A,~,HS,CNN,J,P,NT,MH'
+      # [string=''] Board variant to apply.
+      # Avoid using it in conjunction with with IBoM native filtering options
+      variant: ''
+      # [string=''] Name of the extra field that stores board variant for component.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      variant_field: ''
+      # [string=''] List of board variants to exclude from the BOM.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      variants_blacklist: ''
+      # [string=''] List of board variants to include in the BOM.
+      # IBoM option, avoid using in conjunction with KiBot variants/filters
+      variants_whitelist: ''
+
+  # PcbDraw - Beautiful 2D PCB render:
+  # Uses configurable colors.
+  # Can also render the components if the 2D models are available
+  - name: 'pcbdraw_top'
+    comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
+    type: 'pcbdraw'
+    dir: 'pcbdraw_dir'
+    options:
+      # [boolean=false] render the bottom side of the board (default is top side)
+      bottom: false
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [number=300] [10,1200] dots per inch (resolution) of the generated image
+      dpi: 300
+      # [string='svg'] [svg,png,jpg] output format. Only used if no `output` is specified
+      format: 'png'
+      # [list(string)=[]] list of components to highlight
+      highlight: []
+      # [list(string)=[]] list of libraries
+      libs: []
+      # [boolean=false] mirror the board
+      mirror: false
+      # [boolean=false] do not make holes transparent
+      no_drillholes: false
+      # [string='%f-%i%v.%x'] name for the generated file. Affected by global options
+      output: '%f-%i%v.%x'
+      # [boolean=false] show placeholder for missing components
+      placeholder: false
+      # [dict|None] replacements for PCB references using components (lib:component)
+      remap:
+      # [list(string)|string=none] [none,all] list of components to draw, can be also a string for none or all.
+      # The default is none
+      show_components: all
+      # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
+      style:
+        # [string='#4ca06c'] color for the board without copper (covered by solder mask)
+        board: '#4ca06c'
+        # [string='#9c6b28'] color for the PCB core (not covered by solder mask)
+        clad: '#9c6b28'
+        # [string='#417e5a'] color for the copper zones (covered by solder mask)
+        copper: '#417e5a'
+        # [boolean=false] highlight over the component (not under)
+        highlight_on_top: false
+        # [number=1.5] [0,1000] how much the highlight extends around the component [mm]
+        highlight_padding: 1.5
+        # [string='stroke:none;fill:#ff0000;opacity:0.5;'] SVG code for the highlight style
+        highlight_style: 'stroke:none;fill:#ff0000;opacity:0.5;'
+        # [string='#000000'] color for the outline
+        outline: '#000000'
+        # [string='#b5ae30'] color for the exposed pads (metal finish)
+        pads: '#b5ae30'
+        # [string='#f0f0f0'] color for the silk screen
+        silk: '#f0f0f0'
+        # [string='#bf2600'] color for the V-CUTS
+        vcut: '#bf2600'
+      # [string=''] Board variant to apply
+      variant: ''
+      # [boolean=false] render V-CUTS on the Cmts.User layer
+      vcuts: false
+      # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
+      warnings: 'visible'
+
+  - name: 'pcbdraw_bot'
+    comment: 'Exports the PCB as a 2D model (SVG, PNG or JPG).'
+    type: 'pcbdraw'
+    dir: 'pcbdraw_dir'
+    options:
+      # [boolean=false] render the bottom side of the board (default is top side)
+      bottom: true
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [number=300] [10,1200] dots per inch (resolution) of the generated image
+      dpi: 300
+      # [string='svg'] [svg,png,jpg] output format. Only used if no `output` is specified
+      format: 'png'
+      # [list(string)=[]] list of components to highlight
+      highlight: []
+      # [list(string)=[]] list of libraries
+      libs: []
+      # [boolean=false] mirror the board
+      mirror: false
+      # [boolean=false] do not make holes transparent
+      no_drillholes: false
+      # [string='%f-%i%v.%x'] name for the generated file. Affected by global options
+      output: '%f-%i%v.%x'
+      # [boolean=false] show placeholder for missing components
+      placeholder: false
+      # [dict|None] replacements for PCB references using components (lib:component)
+      remap:
+      # [list(string)|string=none] [none,all] list of components to draw, can be also a string for none or all.
+      # The default is none
+      show_components: all
+      # [string|dict] PCB style (colors). An internal name, the name of a JSON file or the style options
+      style:
+        # [string='#4ca06c'] color for the board without copper (covered by solder mask)
+        board: '#4ca06c'
+        # [string='#9c6b28'] color for the PCB core (not covered by solder mask)
+        clad: '#9c6b28'
+        # [string='#417e5a'] color for the copper zones (covered by solder mask)
+        copper: '#417e5a'
+        # [boolean=false] highlight over the component (not under)
+        highlight_on_top: false
+        # [number=1.5] [0,1000] how much the highlight extends around the component [mm]
+        highlight_padding: 1.5
+        # [string='stroke:none;fill:#ff0000;opacity:0.5;'] SVG code for the highlight style
+        highlight_style: 'stroke:none;fill:#ff0000;opacity:0.5;'
+        # [string='#000000'] color for the outline
+        outline: '#000000'
+        # [string='#b5ae30'] color for the exposed pads (metal finish)
+        pads: '#b5ae30'
+        # [string='#f0f0f0'] color for the silk screen
+        silk: '#f0f0f0'
+        # [string='#bf2600'] color for the V-CUTS
+        vcut: '#bf2600'
+      # [string=''] Board variant to apply
+      variant: ''
+      # [boolean=false] render V-CUTS on the Cmts.User layer
+      vcuts: false
+      # [string='visible'] [visible,all,none] using visible only the warnings about components in the visible side are generated
+      warnings: 'visible'
+
+  # PDF PCB Print (Portable Document Format):
+  # This is the main format to document your PCB.
+  # This output is what you get from the 'File/Print' menu in pcbnew.
+  - name: 'pdf_pcb_print'
+    comment: 'Exports the PCB to the most common exhange format. Suitable for printing.'
+    type: 'pdf_pcb_print'
+    dir: 'pdf_pcb_print_dir'
+    options:
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [string='full'] what to use to indicate the drill places, can be none, small or full (for real scale)
+      drill_marks: 'full'
+      # [boolean=false] print mirrored (X axis inverted). ONLY for KiCad 6
+      mirror: false
+      # [boolean=false] print in black and white
+      monochrome: false
+      # [string='%f-%i%v.%x'] filename for the output PDF (%i=layers, %x=pdf). Affected by global options
+      output: '%f-%i%v.%x'
+      # `output_name` is an alias for `output`
+      # [boolean=true] include the title-block
+      plot_sheet_reference: true
+      # [number=1.0] scale factor (0 means autoscaling)
+      scaling: 1.0
+      # [boolean=false] print layers in separated pages
+      separated: false
+      # [string=''] Board variant to apply
+      variant: ''
+    layers: all
+
+  # PDF Schematic Print (Portable Document Format):
+  # This is the main format to document your schematic.
+  # This output is what you get from the 'File/Print' menu in eeschema.
+  - name: 'pdf_sch_print'
+    comment: 'Exports the PCB to the most common exhange format. Suitable for printing.'
+    type: 'pdf_sch_print'
+    dir: 'pdf_sch_print_dir'
+    options:
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [string='%f-%i%v.%x'] filename for the output PDF (%i=schematic %x=pdf). Affected by global options
+      output: '%f-%i%v.%x'
+      # [string=''] Board variant to apply.
+      # Not fitted components are crossed
+      variant: ''
+
+  # STEP (ISO 10303-21 Clear Text Encoding of the Exchange Structure):
+  # This is the most common 3D format for exchange purposes.
+  # This output is what you get from the 'File/Export/STEP' menu in pcbnew.
+  - name: 'step'
+    comment: 'Exports the PCB as a 3D model.'
+    type: 'step'
+    dir: 'step_dir'
+    options:
+      # [string|list(string)=''] Name of the filter to mark components as not fitted.
+      # A short-cut to use for simple cases where a variant is an overkill
+      dnf_filter: ''
+      # [boolean=true] use metric units instead of inches
+      metric_units: true
+      # [number=-1] the minimum distance between points to treat them as separate ones (-1 is KiCad default: 0.01 mm)
+      min_distance: -1
+      # [boolean=false] used to exclude 3D models for components with 'virtual' attribute
+      no_virtual: false
+      # [string='grid'] determines the coordinates origin. Using grid the coordinates are the same as you have in the design sheet.
+      # The drill option uses the auxiliar reference defined by the user.
+      # You can define any other origin using the format 'X,Y', i.e. '3.2,-10'
+      origin: 'grid'
+      # [string='%f-%i%v.%x'] name for the generated STEP file (%i='3D' %x='step'). Affected by global options
+      output: '%f-%i%v.%x'
+      # [string=''] Board variant to apply
+      variant: ''
