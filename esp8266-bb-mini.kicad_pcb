@@ -17,8 +17,8 @@
   )
 
   (layers
-    (0 Front signal hide)
-    (31 Back signal hide)
+    (0 Front signal)
+    (31 Back signal)
     (34 B.Paste user)
     (35 F.Paste user)
     (36 B.SilkS user)
@@ -439,6 +439,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
+    (model ${KIPRJMOD}/packages3d/530480410.stp
+      (offset (xyz 2 -3.5 2))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 180))
+    )
   )
 
   (module Capacitor_SMD:C_0805_2012Metric (layer Front) (tedit 5F68FEEE) (tstamp 5FC3E285)
@@ -533,10 +538,10 @@
       (net 10 /EXT_GPIO4))
     (pad 1 thru_hole roundrect (at 0 0 90) (size 0.8 1.3) (drill 0.5) (layers *.Cu *.Mask) (roundrect_rratio 0.25)
       (net 11 /EXT_GPIO5))
-    (model ${KISYS3DMOD}/Connector_Molex.3dshapes/Molex_PicoBlade_53048-0410_1x04_P1.25mm_Horizontal.wrl
-      (at (xyz 0 0 0))
+    (model ${KIPRJMOD}/packages3d/530480410.stp
+      (offset (xyz 2 -3.5 2))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz 0 0 180))
     )
   )
 
@@ -596,10 +601,10 @@
       (net 8 /EXT_GPIO12))
     (pad 1 thru_hole roundrect (at 0 0 270) (size 0.8 1.3) (drill 0.5) (layers *.Cu *.Mask) (roundrect_rratio 0.25)
       (net 9 /EXT_GPIO13))
-    (model ${KISYS3DMOD}/Connector_Molex.3dshapes/Molex_PicoBlade_53048-0410_1x04_P1.25mm_Horizontal.wrl
-      (at (xyz 0 0 0))
+    (model ${KIPRJMOD}/packages3d/530480410.stp
+      (offset (xyz 2 -3.5 2))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz 0 0 180))
     )
   )
 
@@ -659,10 +664,10 @@
       (net 6 /EXT_RXD))
     (pad 1 thru_hole roundrect (at 0 0 90) (size 0.8 1.3) (drill 0.5) (layers *.Cu *.Mask) (roundrect_rratio 0.25)
       (net 7 /EXT_TXD))
-    (model ${KISYS3DMOD}/Connector_Molex.3dshapes/Molex_PicoBlade_53048-0410_1x04_P1.25mm_Horizontal.wrl
-      (at (xyz 0 0 0))
+    (model ${KIPRJMOD}/packages3d/530480410.stp
+      (offset (xyz 2 -3.5 2))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
+      (rotate (xyz 0 0 180))
     )
   )
 
@@ -722,6 +727,11 @@
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
+    )
+    (model ${KIPRJMOD}/packages3d/530480210.stp
+      (offset (xyz 0.7 -3.5 2))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 180))
     )
   )
 
@@ -979,7 +989,12 @@
       (net 16 "Net-(U1-Pad2)"))
     (pad 4 smd rect (at -3.05 -2.25 270) (size 2.2 1) (layers Back B.Paste B.Mask)
       (net 2 +BATT))
-    (model ${KISYS3DMOD}/Package_TO_SOT_SMD.3dshapes/SOT-223-5.wrl
+    (model ${KISYS3DMOD}/Package_TO_SOT_SMD.3dshapes/SOT-223.wrl
+      (at (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
+    (model ${KISYS3DMOD}/Package_TO_SOT_SMD.3dshapes/SOT-223.stp
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
