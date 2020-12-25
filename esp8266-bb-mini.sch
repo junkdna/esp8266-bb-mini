@@ -603,7 +603,7 @@ U 1 1 5FC7B6C1
 P 1200 6900
 F 0 "H1" H 1300 6946 50  0000 L CNN
 F 1 "MountingHole" H 1300 6855 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 1200 6900 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965_Pad_TopOnly" H 1200 6900 50  0001 C CNN
 F 3 "~" H 1200 6900 50  0001 C CNN
 	1    1200 6900
 	1    0    0    -1  
@@ -614,7 +614,7 @@ U 1 1 5FC7BE96
 P 1200 7200
 F 0 "H2" H 1300 7246 50  0000 L CNN
 F 1 "MountingHole" H 1300 7155 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3.2mm_M3" H 1200 7200 50  0001 C CNN
+F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965_Pad_TopOnly" H 1200 7200 50  0001 C CNN
 F 3 "~" H 1200 7200 50  0001 C CNN
 	1    1200 7200
 	1    0    0    -1  
