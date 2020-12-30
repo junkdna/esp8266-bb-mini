@@ -148,46 +148,21 @@ Wire Wire Line
 	3900 4650 3400 4650
 Wire Wire Line
 	3400 4650 3400 4450
-Connection ~ 4500 4150
-Connection ~ 5650 4150
-Wire Wire Line
-	5650 4150 5950 4150
-Wire Wire Line
-	5350 4450 5200 4450
-Wire Wire Line
-	5650 4650 5650 4450
-Wire Wire Line
-	5100 5250 5950 5250
-Wire Wire Line
-	5950 5250 5950 4450
 Wire Wire Line
 	5100 5350 5600 5350
 Wire Wire Line
 	5600 5350 5600 5450
-Wire Wire Line
-	5200 4450 5200 4350
-Connection ~ 5200 4450
-Wire Wire Line
-	5200 4450 5100 4450
-Text Label 5200 4350 1    50   ~ 0
+Text Label 5100 4450 0    50   ~ 0
 EXT_GPIO0
 Text Label 5100 4550 0    50   ~ 0
 EXT_TXD
 Text Label 5100 4750 0    50   ~ 0
 EXT_RXD
-Text Label 5100 4850 0    50   ~ 0
-EXT_GPIO4
-Text Label 5100 4950 0    50   ~ 0
-EXT_GPIO5
-Text Label 5100 5050 0    50   ~ 0
-EXT_GPIO12
 Text Label 5100 5150 0    50   ~ 0
 EXT_GPIO13
-Text Label 5650 4650 0    50   ~ 0
+Text Label 5100 4650 0    50   ~ 0
 EXT_GPIO2
-Wire Wire Line
-	5100 4650 5650 4650
-Text Label 5950 5250 0    50   ~ 0
+Text Label 5100 5250 0    50   ~ 0
 EXT_GPIO14
 Text Label 5600 5350 0    50   ~ 0
 EXT_GPIO15
@@ -415,37 +390,26 @@ F 3 "~" H 5600 5600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R8
-U 1 1 5FB5A733
-P 5950 4300
-F 0 "R8" H 6020 4346 50  0000 L CNN
-F 1 "10k" H 6020 4255 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 5880 4300 50  0001 C CNN
-F 3 "~" H 5950 4300 50  0001 C CNN
-	1    5950 4300
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R R7
 U 1 1 5FB5A19C
-P 5650 4300
-F 0 "R7" H 5720 4346 50  0000 L CNN
-F 1 "10k" H 5720 4255 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 5580 4300 50  0001 C CNN
-F 3 "~" H 5650 4300 50  0001 C CNN
-	1    5650 4300
+P 6500 4300
+F 0 "R7" H 6570 4346 50  0000 L CNN
+F 1 "10k" H 6570 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 6430 4300 50  0001 C CNN
+F 3 "~" H 6500 4300 50  0001 C CNN
+	1    6500 4300
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R5
 U 1 1 5FB599F1
-P 5350 4300
-F 0 "R5" H 5420 4346 50  0000 L CNN
-F 1 "10k" H 5420 4255 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 5280 4300 50  0001 C CNN
-F 3 "~" H 5350 4300 50  0001 C CNN
-	1    5350 4300
-	-1   0    0    1   
+P 6200 4300
+F 0 "R5" H 6270 4346 50  0000 L CNN
+F 1 "10k" H 6270 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 6130 4300 50  0001 C CNN
+F 3 "~" H 6200 4300 50  0001 C CNN
+	1    6200 4300
+	1    0    0    -1  
 $EndComp
 Text Label 6800 1300 0    50   ~ 0
 EXT_GPIO13
@@ -487,11 +451,6 @@ F 3 "~" H 6600 2100 50  0001 C CNN
 	1    6600 2100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4500 4150 5350 4150
-Connection ~ 5350 4150
-Wire Wire Line
-	5350 4150 5650 4150
 $Comp
 L power:+BATT #PWR016
 U 1 1 5FBF99E2
@@ -617,6 +576,125 @@ F 1 "MountingHole" H 1300 7155 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965_Pad_TopOnly" H 1200 7200 50  0001 C CNN
 F 3 "~" H 1200 7200 50  0001 C CNN
 	1    1200 7200
+	1    0    0    -1  
+$EndComp
+Text Label 5100 4850 0    50   ~ 0
+EXT_GPIO4
+Text Label 5100 4950 0    50   ~ 0
+EXT_GPIO5
+Text Label 5100 5050 0    50   ~ 0
+EXT_GPIO12
+$Comp
+L Device:R R?
+U 1 1 5FED4C62
+P 6800 4300
+F 0 "R?" H 6870 4346 50  0000 L CNN
+F 1 "10k" H 6870 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 6730 4300 50  0001 C CNN
+F 3 "~" H 6800 4300 50  0001 C CNN
+	1    6800 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5FED53C5
+P 7100 4300
+F 0 "R?" H 7170 4346 50  0000 L CNN
+F 1 "10k" H 7170 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 7030 4300 50  0001 C CNN
+F 3 "~" H 7100 4300 50  0001 C CNN
+	1    7100 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5FED6300
+P 7400 4300
+F 0 "R?" H 7470 4346 50  0000 L CNN
+F 1 "10k" H 7470 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 7330 4300 50  0001 C CNN
+F 3 "~" H 7400 4300 50  0001 C CNN
+	1    7400 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5FED6B2D
+P 7700 4300
+F 0 "R?" H 7770 4346 50  0000 L CNN
+F 1 "10k" H 7770 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 7630 4300 50  0001 C CNN
+F 3 "~" H 7700 4300 50  0001 C CNN
+	1    7700 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5FED7182
+P 8000 4300
+F 0 "R?" H 8070 4346 50  0000 L CNN
+F 1 "10k" H 8070 4255 50  0000 L CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 7930 4300 50  0001 C CNN
+F 3 "~" H 8000 4300 50  0001 C CNN
+	1    8000 4300
+	1    0    0    -1  
+$EndComp
+Text Label 6200 4450 3    50   ~ 0
+EXT_GPIO0
+Text Label 6500 4450 3    50   ~ 0
+EXT_GPIO2
+Text Label 6800 4450 3    50   ~ 0
+EXT_GPIO4
+Text Label 7100 4450 3    50   ~ 0
+EXT_GPIO5
+Text Label 7400 4450 3    50   ~ 0
+EXT_GPIO12
+Text Label 7700 4450 3    50   ~ 0
+EXT_GPIO13
+Text Label 8000 4450 3    50   ~ 0
+EXT_GPIO14
+Wire Wire Line
+	6200 4150 6200 4000
+Wire Wire Line
+	8000 4000 8000 4150
+Wire Wire Line
+	7700 4150 7700 4000
+Connection ~ 7700 4000
+Wire Wire Line
+	7700 4000 8000 4000
+Wire Wire Line
+	7400 4150 7400 4000
+Connection ~ 7400 4000
+Wire Wire Line
+	7400 4000 7700 4000
+Wire Wire Line
+	7100 4150 7100 4000
+Connection ~ 7100 4000
+Wire Wire Line
+	7100 4000 7400 4000
+Wire Wire Line
+	6800 4150 6800 4000
+Wire Wire Line
+	6200 4000 6500 4000
+Connection ~ 6800 4000
+Wire Wire Line
+	6800 4000 7100 4000
+Wire Wire Line
+	6500 4150 6500 4000
+Connection ~ 6500 4000
+Wire Wire Line
+	6500 4000 6800 4000
+Wire Wire Line
+	7100 4000 7100 3750
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5FEDEC55
+P 7100 3750
+F 0 "#PWR?" H 7100 3600 50  0001 C CNN
+F 1 "+3.3V" H 7115 3923 50  0000 C CNN
+F 2 "" H 7100 3750 50  0001 C CNN
+F 3 "" H 7100 3750 50  0001 C CNN
+	1    7100 3750
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
